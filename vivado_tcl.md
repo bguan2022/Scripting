@@ -1,4 +1,5 @@
 Environment variable set-up
+
   ```setenv LM_LICENSE_FILE <license file>```
 
 The following is the Tcl syntax for generating a timing simulation netlist:
