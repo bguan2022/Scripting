@@ -78,5 +78,42 @@ module mailbox_example();
 endmodule
 
 
+// ------------------------------ Assertion ---------------------------------
+// 1. Immediate Assertions
+// 2. Concurrent Assertions
+// 3. Implication
+// 4. Properties and Sequences
+// 5. Assertion Clocking
+//---------------------------------------------------------------------------
+ 
+// 1. Immediate Assertions
+    assert (A == B) $display ("OK. A equals B");
+                  else $error("It's gone wrong");
 
 
+// 2. Concurrent Assertions 
+  assert property (@(posedge Clock) Req |-> ##[1:2] Ack);
+  
+//Req is asserted, Ack must be asserted on the next clock, or the following clock.
+      
+// 3. Implication 
+      //There are two forms of implication: overlapped using operator |->, and non-overlapped using operator |=>.
+       
+      s1 |=> s2;
+      
+      //if the sequence s1 matches, then sequence s2 must also match. If sequence s1 does not match, then the result is true.
+
+// 4. Properties and Sequences
+        property not_read_and_write;
+                not (Read && Write);
+        endproperty assert property (not_read_and_write);
+            
+// 5. Assertion Clocking
+        sequence s;
+            @(posedge clk) a ##1 b;
+        endsequence
+        
+        property p;
+            a |-> s;
+        endproperty
+        assert property (p);     
