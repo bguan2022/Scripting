@@ -117,3 +117,16 @@ endmodule
             a |-> s;
         endproperty
         assert property (p);     
+
+            
+// ----------------------Thread--------------------------------------------
+//
+//-------------------------------------------------------------------------     
+ initial begin 
+            fork
+                thread_1; 
+                thread_2;
+                thread_3;
+            join 
+     some_other_task;
+ end 
