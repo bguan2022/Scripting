@@ -1,6 +1,6 @@
-// -------- Interface -----------
+// ------------------------------ Interface ---------------------------------
 //
-//-------------------------------
+//---------------------------------------------------------------------------
     interface ClockedBus (input Clk);
       logic[7:0] Addr, Data;
       logic RWn;
@@ -14,9 +14,9 @@
           mem[Bus.Addr] = Bus.Data;
     endmodule
 
-// ------------ Task ------------
+// ---------------------------------- Task ----------------------------------
 //
-//-------------------------------
+//---------------------------------------------------------------------------
   interface MSBus (input Clk);
     logic [7:0] Addr, Data;
     logic RWn;
@@ -39,10 +39,14 @@
   endinterface
 
 
-//-------------------Mailbox---------------
+//-----------------------------------------Mailbox-------------------------------------
 // One process can put data into a mailbox that stores data internally and can be retrieved by another process. 
 // Mailbox behaves as first-in, first-out (FIFO).
-//-----------------------------------------
+//
+// Task: put (store data)   get (read out)  peek (make a copy)
+//
+// you can have bounded (limited fifo size) or unbounded (unlimited fifo size)
+//-------------------------------------------------------------------------------------
 
 module mailbox_example();
   mailbox mb = new(3);
