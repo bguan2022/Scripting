@@ -1,3 +1,4 @@
+// Source: https://www.chipverify.com/systemverilog
 // ------------------------------ Interface ---------------------------------
 //
 //---------------------------------------------------------------------------
@@ -119,14 +120,42 @@ endmodule
         assert property (p);     
 
             
-// ----------------------Thread--------------------------------------------
+// ----------------------Thread---------------------------------
 //
-//-------------------------------------------------------------------------     
- initial begin 
-            fork
-                thread_1; 
-                thread_2;
-                thread_3;
-            join 
-     some_other_task;
- end 
+//--------------------------------------------------------------     
+     initial begin 
+                fork
+                    thread_1; 
+                    thread_2;
+                    thread_3;
+                join 
+         some_other_task;
+     end 
+            
+// ----------------------class---------------------------------
+// 1. Base class
+// 2. Inheritance           
+//-------------------------------------------------------------       
+  //1. base class         
+    class myPacket;
+        bit [3:0] header;
+        bit x; 
+        bit y;
+        bit z;
+        function add(x,y,z);
+            this.z = this.x + this.y;
+        endfunction
+        
+        function display();
+            $display("%d", this.x, this.y);    
+        endfunction
+    endclass 
+            
+  //2. Inheritance 
+            class newPacket extends myPacket;
+                function add_new();
+                    super.add();
+                    
+                endfunction 
+            endclass
+            
