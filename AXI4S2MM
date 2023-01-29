@@ -1,0 +1,3 @@
+To convert stream data into memory mapped data you can use, AXI DMA. And the dma can transfer the streamed data to DDR, or to a block ram as you wish.
+What you have to do is connect your stream master into AXI_DMA, S_AXIS_S2MM interface and the other end connect the M_AXI_S2MM to your memory side (Like for DDR you have to connect ZYNQ HP port or for block ram you can directly connect to block ram slave interface. you may have to use AXI_Interconnect to connect AXI Master and Slave interfaces)
+There are examples for AXI_DMA <Install location>\SDK\2016.4\data\embeddedsw\XilinxProcessorIPLib folder. You can use simple_poll example.
